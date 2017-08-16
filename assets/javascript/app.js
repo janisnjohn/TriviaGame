@@ -7,7 +7,7 @@ $(document).ready(function(){
 var number = 15;
 var intervalId;
 
-// timer starts 10 seconds to answer question once start button is pushed.
+// timer starts 15 seconds to answer question once start button is pushed.
 
 //list of questions, choices and answer. 
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, wrong=0, correct = 0;
@@ -25,15 +25,15 @@ function _(x){
 
 function renderQuestion() {
 	test = _("test");
+	run();
 	if(pos >= questions.length){
 		$("#test").html("<h2> Correct: " + correct+ "<br>Wrong: " + wrong +"</h2>");
-		_("test_status").innerHTML = "Text Completed";
 		pos =0;
 		correct = 0;
 		wrong = 0;
 		return false;
-		$("#test").html("<button id='restart'>restart</button>");
-		$("#restart").on("click", run);
+		// $("#start").html("<button>restart</button>");
+		// $("#start").on("click", renderQuestion);
 
 	}
 	// _("test_status").innerHTML = "Question " +(pos+1) + " of " +questions.length;
@@ -68,13 +68,12 @@ function checkAnswer(){
 	}
 	pos++;
 	number=15;
-	run();
-	renderQuestion();
+
+	// setTimeout(renderQuestion, 3000);
 }
 
 function run() {
 	 intervalId = setInterval(decrement, 1000);
-	 renderQuestion();
 }
 
 function decrement() {
@@ -87,7 +86,7 @@ function decrement() {
 
 	alert("Time Up!");
 	pos++;
-	setTimeout(run, 5000);
+	// setTimeout(renderQuestion, 2000);
 	}
 	else if (pos === 5) {
 	$("#test").append("Thank you for playing!");
@@ -95,7 +94,9 @@ function decrement() {
 
 }
 
-$("#start").on("click", run);
+	$("#start").html("<button>start</button>");
+	$("#start").on("click", renderQuestion);
+
 window.addEventListener("load", renderQuestion, false);
 });
 

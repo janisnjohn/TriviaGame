@@ -1,3 +1,16 @@
 #start {
 	font-size: 30px;
 }
+button {
+	background-color: red;
+	padding left: 10px;
+	padding-right: 10px;
+	border-radius: 5px;
+}
+.jumbotron {
+	background-color: green;
+	height: 100%;
+}
+.panel-header{
+	background-color: yellow;
+}
