@@ -4,7 +4,7 @@ $(document).ready(function(){
 // start button click.  display: none
 
 // number of seconds to complete the answer.
-var number = 15;
+var number = 30;
 var intervalId;
 
 // timer starts 15 seconds to answer question once start button is pushed.
@@ -25,7 +25,6 @@ function _(x){
 
 function renderQuestion() {
 	test = _("test");
-	run();
 	if(pos >= questions.length){
 		$("#test").html("<h2> Correct: " + correct+ "<br>Wrong: " + wrong +"</h2>");
 		pos =0;
@@ -49,6 +48,7 @@ function renderQuestion() {
 	$("#test").append("<input type='radio' name='choices' value='D'> "+chD + "<br><br>");
 	$("#test").append("<button id='submit'>Submit</button>");
 	$("#submit").on("click", checkAnswer);
+	console.log(checkAnswer);
 
 }
 function checkAnswer(){
@@ -61,19 +61,23 @@ function checkAnswer(){
 	}
 	if (choice === questions[pos][5]) {
 		correct++;
-		console.log("Correct!");
+		$("#test").html("<h3>You Guessed Correct!</h3>");
+
 	} else {
 		wrong++;
-		console.log("Wrong!");
+		$("#test").html(questions[pos][5]);
 	}
 	pos++;
 	number=15;
+	
 
 	// setTimeout(renderQuestion, 3000);
+	renderQuestion();
 }
 
 function run() {
 	 intervalId = setInterval(decrement, 1000);
+	 renderQuestion();
 }
 
 function decrement() {
@@ -95,7 +99,7 @@ function decrement() {
 }
 
 	$("#start").html("<button>start</button>");
-	$("#start").on("click", renderQuestion);
+	$("#start").on("click", run);
 
 window.addEventListener("load", renderQuestion, false);
 });
