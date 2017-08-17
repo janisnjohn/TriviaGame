@@ -12,10 +12,10 @@ var intervalId;
 //list of questions, choices and answer. 
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, wrong=0, correct = 0;
 var questions=[
-	["The Eiffel Tower is located where in Paris?", "Bois de Boulogne", "Champ de Mars", "Jardin des Plantes", "Parc de Belleville", "B"],
+	["The Eiffel Tower is located where in Paris?", "Bois de Boulogne", "Champ de Mars", "Jardin des Plantes", "Parc de Belleville", "B", "assets/images/EiffelTower.gif"],
 	["Where is the London Bridge located?", "Paris", "Champ de Mars", "Lake Havasu City", "London", "C"],
 	["Which is the most populated city in the world?", "New York City", "Tokyo Japan", "Delhi India", "Shanghai China", "B"],
-	["Where is the largest pyramid in the world located?", "El Giza Egypt", "Meroe Sudan", "Puebla Mexico", "Cryo Egypt", "C"],
+	["Where is Mount Rushmore located?", "Washington DC", "Minot North Dakota", "Keystone South Dakota", "Cheyenne Wyoming", "C"],
 	["What city is the Taj Mahal in?", "Dehli", "Agra", "Kanpur", "Patna", "B"]
 ];
 
@@ -27,9 +27,11 @@ function renderQuestion() {
 	test = _("test");
 	if(pos >= questions.length){
 		$("#test").html("<h2> Correct: " + correct+ "<br>Wrong: " + wrong +"</h2>");
+		$("#test").append("<center><img src='assets/images/GameOver.gif'></center>");
 		pos =0;
 		correct = 0;
 		wrong = 0;
+		clearInterval(intervalId);
 		return false;
 		// $("#start").html("<button>restart</button>");
 		// $("#start").on("click", renderQuestion);
@@ -61,18 +63,18 @@ function checkAnswer(){
 	}
 	if (choice === questions[pos][5]) {
 		correct++;
+		console.log("corect11111");
 		$("#test").html("<h3>You Guessed Correct!</h3>");
-
+		// $("#test").append("<img src='" +questions[pos][6]+"'>");
 	} else {
 		wrong++;
 		$("#test").html(questions[pos][5]);
 	}
 	pos++;
-	number=15;
-	
+	number=35;
 
-	// setTimeout(renderQuestion, 3000);
-	renderQuestion();
+	setTimeout(renderQuestion, 5000);
+	// renderQuestion();
 }
 
 function run() {

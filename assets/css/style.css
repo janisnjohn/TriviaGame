@@ -14,3 +14,9 @@ button {
 .panel-header{
 	background-color: yellow;
 }
+input:hover {
+	background-color: yellow;
+}
+img {
+	width:30%;
+}
