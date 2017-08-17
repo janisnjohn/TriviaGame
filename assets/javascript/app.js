@@ -10,13 +10,13 @@ var intervalId;
 // timer starts 15 seconds to answer question once start button is pushed.
 
 //list of questions, choices and answer. 
-var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, wrong=0, correct = 0;
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, wrong=0, correct = 0, unanswered=0;
 var questions=[
 	["The Eiffel Tower is located where in Paris?", "Bois de Boulogne", "Champ de Mars", "Jardin des Plantes", "Parc de Belleville", "B", "assets/images/EiffelTower.gif"],
-	["Where is the London Bridge located?", "Paris", "Champ de Mars", "Lake Havasu City", "London", "C"],
-	["Which is the most populated city in the world?", "New York City", "Tokyo Japan", "Delhi India", "Shanghai China", "B"],
-	["Where is Mount Rushmore located?", "Washington DC", "Minot North Dakota", "Keystone South Dakota", "Cheyenne Wyoming", "C"],
-	["What city is the Taj Mahal in?", "Dehli", "Agra", "Kanpur", "Patna", "B"]
+	["Where is the London Bridge located?", "Paris", "Champ de Mars", "Lake Havasu City", "London", "C", "assets/images/Bridge.gif"],
+	["Which is the most populated city in the world?", "New York City", "Tokyo Japan", "Delhi India", "Shanghai China", "B", "assets/images/Tokyo.gif"],
+	["Where is Mount Rushmore located?", "Washington DC", "Minot North Dakota", "Keystone South Dakota", "Cheyenne Wyoming", "C", "assets/images/MountRushmore.gif"],
+	["What city is the Taj Mahal in?", "Dehli", "Agra", "Kanpur", "Patna", "B", "assets/images/TajMahal.gif"]
 ];
 
 function _(x){
@@ -64,17 +64,17 @@ function checkAnswer(){
 	if (choice === questions[pos][5]) {
 		correct++;
 		console.log("corect11111");
-		$("#test").html("<h3>You Guessed Correct!</h3>");
-		// $("#test").append("<img src='" +questions[pos][6]+"'>");
+		$("#test").html("<center><h3>You Guessed Correct!</h3></center>");
+		$("#test").append("<center><img src='" +questions[pos][6]+"'></center>");
 	} else {
 		wrong++;
-		$("#test").html(questions[pos][5]);
+		$("#test").html("<center><h3>Sorry the correct answer is "+questions[pos][5] +"</center>");
+		$("#test").append("<center><img src='" +questions[pos][6]+"'></center>");
 	}
 	pos++;
-	number=35;
+	number=33;
 
-	setTimeout(renderQuestion, 5000);
-	// renderQuestion();
+	setTimeout(renderQuestion, 3000);
 }
 
 function run() {
@@ -90,14 +90,12 @@ function decrement() {
 
 	if (number === 0) {
 
-	alert("Time Up!");
+	alert("Times Up!");
 	pos++;
-	// setTimeout(renderQuestion, 2000);
+	number=33;
+	unanswered++;
+	setTimeout(renderQuestion, 3000);
 	}
-	else if (pos === 5) {
-	$("#test").append("Thank you for playing!");
-	}
-
 }
 
 	$("#start").html("<button>start</button>");
