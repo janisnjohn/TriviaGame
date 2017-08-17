@@ -1,3 +1,7 @@
+body{
+	background-image: url("../images/WhereBackground.jpg");
+}
+
 #start {
 	font-size: 30px;
 }
@@ -8,7 +12,7 @@ button {
 	border-radius: 5px;
 }
 .jumbotron {
-	background-color: green;
+	background-color: transparent;
 	height: 100%;
 }
 .panel-header{
